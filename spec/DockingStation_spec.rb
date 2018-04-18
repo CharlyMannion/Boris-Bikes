@@ -6,8 +6,13 @@ describe DockingStation do
     bike = subject.release_bike
     expect(bike).to be_working
   end
-  it 'accepts a bike when we dock' do
-    bike = subject.release_bike
-    expect(bike).to be_dock
+  it 'docks something' do
+    bike = Bike.new
+    expect(subject.dock(bike)).to eq bike
   end
+  it 'returns docked bike' do
+   bike = Bike.new
+   expect(subject.bike).to eq @bike
+  end
+
   end

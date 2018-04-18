@@ -3,7 +3,4 @@ class Bike
     true
   end
 
-  def dock?
-    true
-  end
 end

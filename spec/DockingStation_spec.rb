@@ -1,6 +1,9 @@
 require 'docking_station'
 
 describe DockingStation do
+  it 'has a bike method' do
+    subject.respond_to? :bike
+  end
   describe '#release_bike' do
     it 'releases a bike' do
       bike = Bike.new

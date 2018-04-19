@@ -5,6 +5,19 @@ describe DockingStation do
       is_expected.to respond_to(:bikes)
   end
 
+describe '#initialize' do
+  it 'should have a capacity' do
+    is_expected.to respond_to(:capacity)
+  end
+  it 'should have a capacity of DefaultCapacity if no capacity is given' do
+    expect(subject.capacity).to eq DockingStation::DEFAULT_CAPACITY
+  end
+  it 'should allow the maintainer to set the capacity' do
+    station = DockingStation.new(10)
+    expect(station.capacity).to eq 10
+  end
+end
+
   describe '#release_bike' do
     it 'releases a bike' do
       bike = Bike.new
@@ -20,8 +33,9 @@ describe DockingStation do
 
   describe '#dock' do
     it 'raises an error when docking station is full' do
-      DockingStation::DEFAULT_CAPACITY.times {subject.dock Bike.new} # No need to declare bike instance seprately bike = Bike.new
-      expect { subject.dock Bike.new }.to raise_error "Docking Station full" #bike2 = Bike.new
+      station = DockingStation.new(30)
+      station.capacity.times {station.dock Bike.new} # No need to declare bike instance seprately bike = Bike.new
+      expect { station.dock Bike.new }.to raise_error "Docking Station full" #bike2 = Bike.new
     end
     it 'returns bike when its docked' do
       bicycle = Bike.new

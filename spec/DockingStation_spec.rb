@@ -42,5 +42,10 @@ end
       subject.dock(bicycle)
       expect(subject.bikes).to eq [bicycle]
     end
+    it 'should return bike is broke when the bike is reported "broken"' do
+    bicycle = Bike.new
+    subject.dock(bicycle, "broken")
+    expect(bicycle.working).to eq false
+    end
   end
 end
